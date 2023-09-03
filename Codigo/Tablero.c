@@ -41,7 +41,7 @@ void IniciarTablero(int n){
         }
     }
     printf("%p\n",tablero[1][0]);
-    struct Tierra contenido = tablero[1][0];
+
     printf("fin iniciar tablero \n");
     return;
 }
