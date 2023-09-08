@@ -10,6 +10,16 @@ int dimension;
 
 void IniciarTablero(int n)
 {
+    /*
+    Entradas:
+    n Tipo: entero
+    Funcionamiento:
+    Recibe el tamaño de la matriz que se quiere hacer y se guarda en dimension,
+    en ***tablero se empieza a pedir memoria para hacer la matriz y hace que cada celda quede apuntando a una tierra,
+    que esta tiene vida aleatoria entre 1-3 y un 0.5 de probabilidad de tener un tesoro  
+    Salida:
+    Nada
+    */
     dimension = n;
     srand(time(0));
 
@@ -45,6 +55,14 @@ void IniciarTablero(int n)
 
 void PasarTurno()
 {
+    /*
+    Entradas:
+    Nada
+    Funcionamiento:
+    Recorre el tablero y si encuntra una bomba llama a TryExplotar
+    Salida:
+    Nada
+    */
     for (int i = 0; i < dimension; i++)
     {
         for (int j = 0; j < dimension; j++)
@@ -60,6 +78,17 @@ void PasarTurno()
 
 void ColocarBomba(Bomba *b, int fila, int columna)
 {
+    /*
+    Entradas:
+    *b Tipo: puntero a bomba
+    fila Tipo: entero
+    columna Tipo: entero
+    Funcionamiento:
+    Va a la fila y columna y hace que el puntero de celda apunte a la bomba que recibió (*b), 
+    cambia el tipo de celda y la bomba queda apuntando a la tierra que había antes
+    Salida:
+    Nada
+    */
     if ((fila > dimension) || (columna > dimension))
         return;
 
@@ -76,6 +105,17 @@ void ColocarBomba(Bomba *b, int fila, int columna)
 
 void MostrarTablero()
 {
+    /*
+    Entradas:
+    Nada
+    Funcionamiento:
+    Recorre el tablero y revisa de que tipo es la celda,
+    si es tierra ve si hay tesoro y si este fue descubierto (vida de la tierra = 0) si fue descubierto imprime "*" 
+    si no imprime cuanta vida tiene la tierra
+    si celda es de tipo bomba imprime "o"
+    Salida:
+    Nada
+    */
     for (int i = 0; i < dimension; i++)
     {
         for (int j = 0; j < dimension; j++)
@@ -102,6 +142,17 @@ void MostrarTablero()
 
 void MostrarBombas()
 {
+    /*
+    Entradas:
+    Nada
+    Funcionamiento:
+    Recorre el tablero y revisa si celda es de tipo bomba,
+    de ser así imprime el contador de turnos, la fila y columna de donde se encuentra, 
+    el tipo de explosión (que este siempre es X porque las bombas tipo punto explotan al momento de ser colocados)
+    y por último la vida de la tierra que tiene debajo
+    Salida:
+    Nada
+    */
     for (int i = 0; i < dimension; i++)
     {
         for (int j = 0; j < dimension; j++)
@@ -124,6 +175,16 @@ void MostrarBombas()
 
 void BorrarTablero()
 {
+    /*
+    Entradas:
+    Nada
+    Funcionamiento:
+    Recorre el tablero y revisa de que tipo es la celda,
+    Si la celda es tipo bomba primero libera la memoria de la tierra que tiene debajo,
+    luego libera la celda, si celda es tipo tierra libera directamente la celda y va liberando hacia arriba
+    Salida:
+    Nada
+    */
     for (int i = 0; i < dimension; i++)
     {
         for (int j = 0; j < dimension; j++)
@@ -144,6 +205,17 @@ void BorrarTablero()
 
 void VerTesoros()
 {
+    /*
+    Entradas:
+    Nada
+    Funcionamiento:
+    Recorre el tablero y revisa de que tipo es la celda,
+    Si la celda es tipo bomba revisa si tierra debajo tiene tesoro de tenerlo imprime "*"
+    si celda es de tipo es tierra revisa directamente si tiene tesoro y de tenerlo imprime "*"
+    en caso de que celda no tenga tesoro imprime la vida de la tiera
+    Salida:
+    Nada
+    */
     for (int i = 0; i < dimension; i++)
     {
         for (int j = 0; j < dimension; j++)
@@ -175,6 +247,14 @@ void VerTesoros()
 
 int FinDelJuego()
 {
+    /*
+    Entradas:
+    Nada
+    Funcionamiento:
+    
+    Salida:
+    0 o 1 ,si se termino el juego 1 de caso contrario 0
+    */
     for (int i = 0; i < dimension; i++)
     {
         for (int j = 0; j < dimension; j++)

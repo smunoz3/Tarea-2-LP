@@ -9,6 +9,17 @@ extern int dimension;
 
 void TryExplotar(int fila, int columna) 
 {
+    /*
+    Entradas:
+    fila Tipo: entero
+    columna Tipo: entero
+    Funcionamiento:
+    Va a la fila y columna del tablero donde se encuentra una bomba 
+    y le reduce en 1 el contador de turnos de la bomba,
+    si este llega a 0 hace explotar a la bomba y luego llama a BorrarBomba
+    Salida:
+    Nada
+    */
     if ((fila > dimension) || (columna > dimension))
         return;
 
@@ -17,7 +28,7 @@ void TryExplotar(int fila, int columna)
         Bomba *bomba = (Bomba *) celda->objeto;
         bomba->contador_turnos--;
         if ((bomba->contador_turnos == 0)) { //&& (bomba->explotar != NULL))
-            (*bomba->explotar)(fila, columna); //explota bomba
+            (*bomba->explotar)(fila, columna);
             Tierra *tierra = (Tierra*) bomba->tierra_debajo;
             BorrarBomba(fila, columna);
         }
@@ -27,6 +38,16 @@ void TryExplotar(int fila, int columna)
 
 void BorrarBomba(int fila, int columna) 
 {
+    /*
+    Entradas:
+    fila Tipo: entero
+    columna Tipo: entero
+    Funcionamiento:
+    Va a la fila y columna del tablero donde se encuentra una bomba
+    asigna la tierra que tiene debajo al puntero celda y luego libera memoria de la bomba
+    Salida:
+    Nada
+    */
     if ((fila > dimension) || (columna > dimension))
         return;
 
@@ -41,7 +62,18 @@ void BorrarBomba(int fila, int columna)
     return;
 }
 
-void ExplosionPunto(int fila, int columna){
+void ExplosionPunto(int fila, int columna)
+{
+    /*
+    Entradas:
+    fila Tipo: entero
+    columna Tipo: entero
+    Funcionamiento:
+    Va a la fila y columna del tablero donde se encuentra una bomba
+    y le cambia la vida de la tierra que tiene debajo por 0
+    Salida:
+    Nada
+    */
     Celda *celda = (Celda *) tablero[fila][columna];
     if (celda->type == CELDA_TYPE_BOMBA){
         Bomba *bomba = (Bomba *) celda->objeto;
@@ -51,7 +83,20 @@ void ExplosionPunto(int fila, int columna){
     return;
 }
 
-void ExplosionX(int fila, int columna){
+void ExplosionX(int fila, int columna)
+{
+    /*
+    Entradas:
+    fila Tipo: entero
+    columna Tipo: entero
+    Funcionamiento:
+    Va a la fila y columna del tablero donde se encuentra una bomba
+    y le reduce en 1 la vida de la tierra que tiene debajo, 
+    si la vida baja de 0 se le reasigna en 0,
+    luego se hace lo mismo para las diagonales con la misma precaucion en caso de tener vida menor a 0 
+    Salida:
+    Nada
+    */
     int fila_d,columna_d;
     Celda *celda = (Celda *) tablero[fila][columna];
     if (celda->type == CELDA_TYPE_BOMBA){

@@ -86,5 +86,6 @@ int main(int argc, char const *argv[])
             break;
         }
     }
+    BorrarTablero();
     return 0;
 }
