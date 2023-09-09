@@ -27,10 +27,10 @@ void TryExplotar(int fila, int columna)
     if (celda->type == CELDA_TYPE_BOMBA) {
         Bomba *bomba = (Bomba *) celda->objeto;
         bomba->contador_turnos--;
-        if ((bomba->contador_turnos == 0)) { //&& (bomba->explotar != NULL))
+        if ((bomba->contador_turnos == 0)) {
             (*bomba->explotar)(fila, columna);
-            Tierra *tierra = (Tierra*) bomba->tierra_debajo;
             BorrarBomba(fila, columna);
+ 
         }
     }
     return;

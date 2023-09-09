@@ -10,7 +10,7 @@ int main(int argc, char const *argv[])
 {
     int n,turno; // tamaño del tablero
     turno = 1;
-
+    
     printf("¡Bienvenido a TreasureFinder!\n");
     printf("Indique el tamaño del tablero a jugar:\n");
     printf("1.7x7  2.10x10  3.12x12\n");

@@ -1,5 +1,6 @@
 #ifndef BOMBA_H
 #define BOMBA_H
+#include "Tierra.h"
 
 typedef struct Bomba {
     int contador_turnos;

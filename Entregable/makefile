@@ -9,11 +9,11 @@ TreasureFinder.o: TreasureFinder.c
 Tablero.o: Tablero.h Tablero.c Bomba.h Bomba.c Tierra.h
 	 gcc -c -v Tablero.c Bomba.c
 
-Run:
+run:
 	 ./treasurefinder.exe
 
 clean:
-	 rm Tablero.o TreasureFinder.o treasurefinder.exe
+	 rm Tablero.o Bomba.o TreasureFinder.o treasurefinder.exe
 
 valgrind:
-	valgrind --leak-check=yes --log-file=valgrind.rpt treasurefinder.exe
+	valgrind --leak-check=full ./treasurefinder.exe
