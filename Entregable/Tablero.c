@@ -251,7 +251,9 @@ int FinDelJuego()
     Entradas:
     Nada
     Funcionamiento:
-    
+    Revisa la tierra en busca de los tesoros,
+    en caso de haber tesoro revisa si la vida de la tierra es 0
+    Si en todos los tesoros la vida de la tierra es 0 retornara 1
     Salida:
     0 o 1 ,si se termino el juego 1 de caso contrario 0
     */
