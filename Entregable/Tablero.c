@@ -33,8 +33,6 @@ void IniciarTablero(int n)
     {
         for (int j = 0; j < n; j++)
         {
-            tablero[i][j] = (void *)malloc(sizeof(void *));
-            
             Tierra *tierra = (Tierra *) malloc(sizeof(struct Tierra));
             tierra->vida = (rand() % 3) + 1;
             int random = (rand() % 100) +1;
@@ -45,11 +43,9 @@ void IniciarTablero(int n)
             Celda *celda = (Celda *) malloc(sizeof(struct Celda));
             celda->type = CELDA_TYPE_TIERRA;
             celda->objeto = tierra;
-
             tablero[i][j] = celda;
         }
     }
-
     return;
 }
 
@@ -122,14 +118,13 @@ void MostrarTablero()
         {
             Celda *celda = (Celda *) tablero[i][j];
             if (celda->type == CELDA_TYPE_TIERRA) { 
-                // Tierra 
                 Tierra *tierra = (Tierra *) celda->objeto;
                 if ((tierra->vida == 0) && (tierra->es_tesoro == 1))
                     printf("*");
                 else 
                     printf("%d", tierra->vida);
-            } else if (celda->type == CELDA_TYPE_BOMBA) {
-                // Bomba
+            } 
+            else if (celda->type == CELDA_TYPE_BOMBA) {
                 printf("o");
             }
             if (j < (dimension - 1))
@@ -195,7 +190,7 @@ void BorrarTablero()
                 free(bomba->tierra_debajo);
             }
             free(celda->objeto);
-            free(tablero[i][j]);
+            free(celda);
         }
         free(tablero[i]);
     }
@@ -263,11 +258,11 @@ int FinDelJuego()
         {
             Celda *celda = (Celda *) tablero[i][j];
             if (celda->type == CELDA_TYPE_TIERRA) { 
-                // Tierra 
                 Tierra *tierra = (Tierra *) celda->objeto;
                 if ((tierra->es_tesoro == 1) && (tierra->vida != 0))
                     return 0;
-            } else if (celda->type == CELDA_TYPE_BOMBA) {
+            } 
+            else if (celda->type == CELDA_TYPE_BOMBA) {
                 Bomba *bomba =(Bomba *)celda->objeto;
                 Tierra *tierra = (Tierra*)bomba->tierra_debajo;
                 if ((tierra->es_tesoro == 1) && (tierra->vida != 0))

@@ -8,7 +8,7 @@
 
 int main(int argc, char const *argv[])
 {
-    int n,turno; // tamaño del tablero
+    int n,turno;
     turno = 1;
     
     printf("¡Bienvenido a TreasureFinder!\n");
@@ -78,7 +78,7 @@ int main(int argc, char const *argv[])
             VerTesoros();
         } 
         
-        if ((FinDelJuego()==1)||(n==99)){
+        if (FinDelJuego()==1){
             MostrarTablero();
             char c;
             printf("Felicidades has ganado\n ");
